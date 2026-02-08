@@ -38,12 +38,8 @@ const Home = () => {
         title: m.title || `Meeting ${m._id.slice(-4)}`,
         date: new Date(m.createdAt).toLocaleDateString(),
         duration: m.duration || "Unknown",
-        summary: m.summary || "Processing...",
-
-        // ❌ OLD: actionItems: m.actionItems || [],
-        // ✅ NEW: Extract just the 'task' text from the object
+        summary: m.summary || m.executiveSummary || "No summary available",
         actionItems: (m.actionItems || []).map((item) => item.task || item),
-
         transcript: m.transcript,
       }));
       setMeetingHistoryData(formattedData);
